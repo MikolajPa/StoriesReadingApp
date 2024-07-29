@@ -26,7 +26,7 @@ public class LanguageController : ControllerBase
     {
         var languages = _languageService.GetLanguageOrigin();
         _logger.LogDebug($"Get method called, got {languages.Count()} results");
-        List<LanguageDto> languageDtos= _mapper.Map<List<LanguageDto>>(languages);
+        List<LanguageResponseDto> languageDtos = _mapper.Map<List<LanguageResponseDto>>(languages);
         return Ok(languageDtos);
     }
 
@@ -35,7 +35,7 @@ public class LanguageController : ControllerBase
     {
         var languages = _languageService.GetLanguageTranslation(originLanguageId);
         _logger.LogDebug($"Get method called, got {languages.Count()} results");
-        List<LanguageDto> languageDtos = _mapper.Map<List<LanguageDto>>(languages);
+        List<LanguageResponseDto> languageDtos = _mapper.Map<List<LanguageResponseDto>>(languages);
         return Ok(languageDtos);
     }
 }

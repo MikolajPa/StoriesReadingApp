@@ -5,8 +5,8 @@ namespace StoriesReadingAPI.DTOs
 {
     public class TextResponseDto
     {
-        public int id { get; set; }
-        public string textTitle { get; set; }
+        public int Id { get; set; }
+        public string TextTitle { get; set; }
     }
 
     public class TextRequestDto

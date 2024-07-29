@@ -5,8 +5,8 @@ namespace StoriesReadingAPI.DTOs
 {
     public class SentenceDto
     {
-        public int id { get; set; }
-        public string languageOriginal { get; set; }
-        public string languageTranslation { get; set; }
+        public int Id { get; set; }
+        public string LanguageOriginal { get; set; }
+        public string LanguageTranslation { get; set; }
     }
 }

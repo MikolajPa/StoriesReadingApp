@@ -26,8 +26,7 @@ public class LanguagelevelController : ControllerBase
     {
         var languageLevels = _repository.GetLanguageLevels(languageLevelId);
         _logger.LogDebug($"Get method called, got {languageLevels.Count()} results");
-        List<LanguageLevelDto> languageLevelsDto= _mapper.Map<List<LanguageLevelDto>>(languageLevels);
-        return Ok(languageLevelsDto);
+        return Ok(_mapper.Map<List<LanguageLevelResponse>>(languageLevels));
     }
 
 }

@@ -3,11 +3,12 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Hosting;
 using StoriesReadingAPI.DTOs;
+using StoriesReadingAPI.Models;
 using StoriesReadingAPI.Repositories;
 using StoriesReadingAPI.Services.Interfaces;
 using StoriesReadingAPI.Services.ServiceModels;
 
-[Authorize]
+//[Authorize]
 [ApiController]
 [Route("api/adminPanel")]
 public class AdminController : ControllerBase
@@ -23,11 +24,43 @@ public class AdminController : ControllerBase
         _mapper = mapper;
     }
 
-
-    [HttpPost("PostText")]
-    public IActionResult PostText([FromBody]TextRequestDto textsRequest)
+    [HttpGet("GetLanguage")]
+    public IActionResult GetLanguages()
     {
-        _adminService.PostText(_mapper.Map<TextAdminServiceModel>(textsRequest));
+        return Ok(_mapper.Map<List<LanguageResponseDto>>(_adminService.GetLanguages()));
+    }
+
+    [HttpPost("PostLanguage")]
+    public IActionResult PostLanguage([FromBody] LanguageRequestDto textsRequest)
+    {
+        _adminService.PostLanguage(_mapper.Map<Languages>(textsRequest));
+        return Ok();
+    }
+
+    [HttpGet("GetLanguageLevel/{languageId}")]
+    public IActionResult GetLanguageLevels(int languageId)
+    {
+        return Ok(_mapper.Map<List<LanguageLevelResponse>>(_adminService.GetLanguageLevels(languageId)));
+    }
+
+    [HttpPost("PostLanguageLevel")]
+    public IActionResult PostLanguageLevel([FromBody] LanguageLevelRequest textsRequest)
+    {
+        _adminService.PostLanguageLevel(_mapper.Map<LanguageLevels>(textsRequest));
+        return Ok();
+    }
+
+    [HttpDelete("DeleteLanguageLevel/{languageLevelId}")]
+    public IActionResult DeleteLanguageLevel(int languageLevelId)
+    {
+        _adminService.DeleteLanguageLevel(languageLevelId);
+        return NoContent();
+    }
+
+    [HttpDelete("DeleteLanguage/{languageId}")]
+    public IActionResult PostText(int languageId)
+    {
+        _adminService.DeleteLanguageLevel(languageId);
         return Ok();
     }
 }

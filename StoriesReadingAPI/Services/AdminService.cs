@@ -22,6 +22,44 @@ namespace StoriesReadingAPI.Services
             _sentenceRepository = sentenceRepository;
         }
 
+        public void DeleteLanguage(int languageId)
+        {
+            var language = _languageRepository.GetId(languageId);
+            if (language != null)
+            {
+                _languageRepository.Remove(language);
+            }
+        }
+
+        public void DeleteLanguageLevel(int languageLevelId)
+        {
+            var languageLevel = _languageLevelRepository.GetId(languageLevelId);
+            if(languageLevel != null)
+            {
+                _languageLevelRepository.Remove(languageLevel);
+            }
+        }
+
+        public IEnumerable<LanguageLevels> GetLanguageLevels(int languageId)
+        {
+            return _languageLevelRepository.GetList(x => x.Language.Id == languageId);
+        }
+
+        public IEnumerable<Languages> GetLanguages()
+        {
+            return _languageRepository.GetAll().ToList();
+        }
+
+        public void PostLanguage(Languages language)
+        {
+            _languageRepository.Add(language);
+        }
+
+        public void PostLanguageLevel(LanguageLevels language)
+        {
+            _languageLevelRepository.Add(language);
+        }
+
         public void PostText(TextAdminServiceModel textAdminServiceModel)
         {
 

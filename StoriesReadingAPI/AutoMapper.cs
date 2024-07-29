@@ -8,8 +8,10 @@ public class AutoMapperProfile : Profile
 {
     public AutoMapperProfile()
     {
-        CreateMap<LanguageLevels, LanguageLevelDto>();
-        CreateMap<Languages, LanguageDto>();
+        CreateMap<LanguageLevels, LanguageLevelResponse>();
+        CreateMap<LanguageLevelRequest, LanguageLevels>();
+        CreateMap<Languages, LanguageResponseDto>();
+        CreateMap<LanguageRequestDto, Languages>();
         CreateMap<Sentences, SentenceDto>();
         CreateMap<Texts, TextResponseDto>();
         CreateMap<TextRequestDto, Texts>();
