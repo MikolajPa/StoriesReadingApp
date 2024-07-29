@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Hosting;
 using StoriesReadingAPI.DTOs;
@@ -6,6 +7,7 @@ using StoriesReadingAPI.Repositories;
 using StoriesReadingAPI.Services.Interfaces;
 using StoriesReadingAPI.Services.ServiceModels;
 
+[Authorize]
 [ApiController]
 [Route("api/adminPanel")]
 public class AdminController : ControllerBase

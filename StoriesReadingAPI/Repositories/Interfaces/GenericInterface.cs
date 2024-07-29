@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using StoriesReadingAPI.Models;
+using StoriesReadingAPI.Models.Contexts;
 using System.Linq.Expressions;
 
 public class RepositoryBase<TEntity> : IRepositoryBase<TEntity> where TEntity : class

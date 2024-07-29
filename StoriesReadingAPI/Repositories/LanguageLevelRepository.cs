@@ -1,4 +1,5 @@
 ﻿using StoriesReadingAPI.Models;
+using StoriesReadingAPI.Models.Contexts;
 
 namespace StoriesReadingAPI.Repositories
 {

@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
 using StoriesReadingAPI.Models;
+using StoriesReadingAPI.Models.Contexts;
 
 namespace StoriesReadingAPI.Repositories
 {

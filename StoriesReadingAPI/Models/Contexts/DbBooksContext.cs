@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace StoriesReadingAPI.Models
+namespace StoriesReadingAPI.Models.Contexts
 {
     public partial class SampleDBContext : DbContext
     {

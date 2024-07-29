@@ -33,3 +33,4 @@ msbuild.wrn
 # Visual Studio 2015
 .vs/
 StoriesReadingAPI/appsettings.json
+StoriesReadingAPI/appsettings.Development.json
