@@ -24,6 +24,13 @@ public class AdminController : ControllerBase
         _mapper = mapper;
     }
 
+    [HttpPost("PostText")]
+    public IActionResult PostText([FromBody] TextRequestDto textsRequest)
+    {
+        _adminService.PostText(_mapper.Map<TextAdminServiceModel>(textsRequest));
+        return Ok();
+    }
+
     [HttpGet("GetLanguage")]
     public IActionResult GetLanguages()
     {
@@ -58,7 +65,7 @@ public class AdminController : ControllerBase
     }
 
     [HttpDelete("DeleteLanguage/{languageId}")]
-    public IActionResult PostText(int languageId)
+    public IActionResult DeleteLanguage(int languageId)
     {
         _adminService.DeleteLanguageLevel(languageId);
         return Ok();
