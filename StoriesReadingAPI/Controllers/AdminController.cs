@@ -60,14 +60,28 @@ public class AdminController : ControllerBase
     [HttpDelete("DeleteLanguageLevel/{languageLevelId}")]
     public IActionResult DeleteLanguageLevel(int languageLevelId)
     {
-        _adminService.DeleteLanguageLevel(languageLevelId);
+        try
+        {
+            _adminService.DeleteLanguageLevel(languageLevelId);
+        }
+        catch (ArgumentNullException ex)
+        {
+            return BadRequest(ex.Message);
+        }
         return NoContent();
     }
 
     [HttpDelete("DeleteLanguage/{languageId}")]
     public IActionResult DeleteLanguage(int languageId)
     {
-        _adminService.DeleteLanguage(languageId);
-        return Ok();
+        try
+        {
+            _adminService.DeleteLanguage(languageId);
+        }
+        catch(ArgumentNullException ex)
+        {
+            return BadRequest(ex.Message);
+        }
+        return NoContent();
     }
 }

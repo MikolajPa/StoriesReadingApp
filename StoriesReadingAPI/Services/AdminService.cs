@@ -29,6 +29,10 @@ namespace StoriesReadingAPI.Services
             {
                 _languageRepository.Remove(language);
             }
+            else
+            {
+                throw new ArgumentException("Language not found");
+            }
         }
 
         public void DeleteLanguageLevel(int languageLevelId)
@@ -37,6 +41,10 @@ namespace StoriesReadingAPI.Services
             if(languageLevel != null)
             {
                 _languageLevelRepository.Remove(languageLevel);
+            }
+            else
+            {
+                throw new ArgumentException("Language level not found");
             }
         }
 
