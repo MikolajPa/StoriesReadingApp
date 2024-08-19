@@ -67,7 +67,7 @@ public class AdminController : ControllerBase
     [HttpDelete("DeleteLanguage/{languageId}")]
     public IActionResult DeleteLanguage(int languageId)
     {
-        _adminService.DeleteLanguageLevel(languageId);
+        _adminService.DeleteLanguage(languageId);
         return Ok();
     }
 }
