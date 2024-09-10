@@ -106,4 +106,14 @@ public class RepositoryBase<TEntity> : IRepositoryBase<TEntity> where TEntity : 
     {
         _context.Dispose();
     }
+
+    public bool Exists(Expression<Func<TEntity, bool>> predicate)
+    {
+        return _context.Set<TEntity>().Any(predicate);
+    }
+
+    public async Task<bool> ExistsAsync(Expression<Func<TEntity, bool>> predicate)
+    {
+        return await _context.Set<TEntity>().AnyAsync(predicate);
+    }
 }

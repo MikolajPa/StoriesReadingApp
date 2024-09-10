@@ -13,6 +13,8 @@ namespace StoriesReadingAPI.Services.Interfaces
 
         void PostLanguageLevel(LanguageLevels language);
 
+        void PostLanguageLevels(List<LanguageLevels> language, int languageLevelId);
+
         IEnumerable<LanguageLevels> GetLanguageLevels(int languageId);
 
         void DeleteLanguageLevel(int languageLevelId);

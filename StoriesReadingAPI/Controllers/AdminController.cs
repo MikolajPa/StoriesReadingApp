@@ -31,6 +31,12 @@ public class AdminController : ControllerBase
         return Ok();
     }
 
+    [HttpGet("GetLanguageWithLanguageLevels")]
+    public IActionResult GetLanguagesWithLevels()
+    {
+        return Ok(_mapper.Map<List<LanguageResponseDto>>(_adminService.GetLanguages()));
+    }
+
     [HttpGet("GetLanguage")]
     public IActionResult GetLanguages()
     {
@@ -44,16 +50,24 @@ public class AdminController : ControllerBase
         return Ok();
     }
 
-    [HttpGet("GetLanguageLevel/{languageId}")]
-    public IActionResult GetLanguageLevels(int languageId)
+    [HttpPost("PostLanguageLevel")]
+    public IActionResult PostLanguageLevel([FromBody] LanguageLevelRequest languageLevelRequest)
     {
-        return Ok(_mapper.Map<List<LanguageLevelResponse>>(_adminService.GetLanguageLevels(languageId)));
+        _adminService.PostLanguageLevel(_mapper.Map<LanguageLevels>(languageLevelRequest));
+        return Ok();
     }
 
-    [HttpPost("PostLanguageLevel")]
-    public IActionResult PostLanguageLevel([FromBody] LanguageLevelRequest textsRequest)
+    [HttpPost("PostLanguageLevels")]
+    public IActionResult PostLanguageLevels(int languageId, [FromBody] List<LanguageLevelRequest> languageLevelsRequest)
     {
-        _adminService.PostLanguageLevel(_mapper.Map<LanguageLevels>(textsRequest));
+        try
+        {
+            _adminService.PostLanguageLevels(_mapper.Map<List<LanguageLevels>>(languageLevelsRequest), languageId);
+        }
+        catch(Exception ex) //Dodac handling customowych errorow, jezeli jest to Exception to wyrzuc typowe new Exception 500 i tyle, w przypadku customowych wysylaj z ich wiadomosciami. Te wiadomosci powinny byc typu const w 1 pliku. Kazdy z nowo dodanych errorow powinien dziedziczyc z klasy Exception
+        {
+            throw ex;
+        }
         return Ok();
     }
 
@@ -83,5 +97,11 @@ public class AdminController : ControllerBase
             return BadRequest(ex.Message);
         }
         return NoContent();
+    }
+
+    [HttpGet("GetLanguageLevel/{languageId}")]
+    public IActionResult GetLanguageLevels(int languageId)
+    {
+        return Ok(_mapper.Map<List<LanguageLevelResponse>>(_adminService.GetLanguageLevels(languageId)));
     }
 }

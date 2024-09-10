@@ -20,4 +20,6 @@ public interface IRepositoryBase<T> where T : class
     void Remove(T objModel);
     void Dispose();
     void SaveChangesExtra();
+    bool Exists(Expression<Func<T, bool>> predicate);
+    Task<bool> ExistsAsync(Expression<Func<T, bool>> predicate);
 }
